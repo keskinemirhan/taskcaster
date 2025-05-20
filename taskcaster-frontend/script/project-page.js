@@ -1,31 +1,99 @@
-async function getHomePage(pageButton) {
-    const projects = await apiService.getProjects();
-    title = `
-            <i class="bi bi-activity"></i>
-            <div class="title-text"> 
-            Home
-            </div> 
-        `;
-    const html = `
-            
-            <div class="h-projects-header">
-                <h1>Projects</h1>
-                <button class="btn">
-                <i class="bi bi-plus"></i>
-                    Add Project
-                </button>
-            </div>
-            <hr>
-            <div class="project-item-list">
-            ${projects.map(project => {
-        return '<div id="' + project.id + '" class="project-item page-button">' +
-            project.name +
-            '</div>';
+async function getProjectPage(id, pageButton) {
+    const project = await apiService.getProject(id);
+    const tasks = await apiService.getProjectTasks(id);
+    const assigned = tasks.filter((task) => task.assigned);
+    const active = tasks.filter((task) => task.status !== "done");
+    const done = tasks.filter((task) => task.status === "done");
+    const title  =`
+            <i class="menu-icon bi bi-card-checklist"></i>
+            ${project.name}
+    ` 
 
-    }).join("")}
+    const html = ` 
+            <div class="project-title">
+              <h1>${project.name}</h1>
+              <button class="btn">
+                <i class="bi bi-pencil-square"></i>
+                Edit
+              </button>
             </div>
-            <h1>Activities</h1>
+            <p class="project-description">
+            ${project.desc}
+            </p>
             <hr>
+            <div class="project-task-header">
+              <h2>Tasks</h2>
+              <button class="btn">
+                <i class="bi bi-plus"></i>
+                Add Task
+              </button>
+            </div>
+            <div class="project-tasks">
+              <div class="project-task-list">
+                <div class="project-task-list-title">
+                  Assigned
+                </div>
+                <hr>
+                <div class="project-task-list-items">`
+        + assigned.map((task) => `
+                  <div id="${task.id}" class="assigned-task-item page-button">
+                    <div class="icon ${task.status}">
+                      <i class="bi bi-circle-fill"></i>
+                    </div>
+                    <div class="task-text">
+                    ${task.name}
+                    </div>
+                  </div>
+`).join("") +
+
+
+
+
+
+        `
+                </div>
+              </div>
+              <div class="project-task-list">
+                <div class="project-task-list-title">
+                  Active
+                </div>
+                <hr>
+                <div class="project-task-list-items">
+                ` + active.map((task) => `
+                  <div id="${task.id}" class="assigned-task-item page-button">
+                    <div class="icon ${task.status}">
+                      <i class="bi bi-circle-fill"></i>
+                    </div>
+                    <div class="task-text">
+                    ${task.name}
+                    </div>
+                  </div>
+`).join("") + `
+                </div>
+              </div>
+              <div class="project-task-list">
+                <div class="project-task-list-title">
+                  Done
+                </div>
+                <hr>
+                <div class="project-task-list-items">
+                `+
+
+        done.map((task) => `
+                  <div id="${task.id}" class="assigned-task-item page-button">
+                    <div class="icon ${task.status}">
+                      <i class="bi bi-circle-fill"></i>
+                    </div>
+                    <div class="task-text">
+                    ${task.name}
+                    </div>
+                  </div>
+`).join("") + `
+                </div>
+              </div>
+            </div>
+            <hr>
+            <h2>Activities</h2>
             <div class="table-container">
               <table>
                 <tr>
@@ -137,7 +205,8 @@ async function getHomePage(pageButton) {
                 </tr>
               </table>
             </div>
-    `;
+          `;
+
     changePage(title, html, pageButton);
-    bindProjectButtons(getPageRoot());
+    bindTaskButtons(getPageRoot());
 }

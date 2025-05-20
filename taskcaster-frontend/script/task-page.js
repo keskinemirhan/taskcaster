@@ -1,5 +1,6 @@
 async function getTaskPage(id, pageButton) {
     const task = await apiService.getTask(id);
+    const reports = await apiService.getReports(id);
     const project = await apiService.getProject(task.projectId);
     const title = `
                 <div class="task-status">
@@ -156,7 +157,7 @@ async function getTaskPage(id, pageButton) {
               Recent Reports
             </h2>
             <div class="report-list">
-            `  + task.reports.map((report) => `
+            `  + reports.map((report) => `
               <div class="report">
                 <div class="report-top">
                 <div class="report-profile">

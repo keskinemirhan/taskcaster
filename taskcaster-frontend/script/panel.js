@@ -30,6 +30,7 @@ async function loadProjects(apiService) {
             </div>
         `;
     });
+    bindProjectButtons(document);
 }
 
 loadProjects(apiService);
@@ -75,16 +76,17 @@ homePageButton.addEventListener("click", function(e) {
 });
 
 let currentPageButton = homePageButton;
-getHomePage(homePageButton);
+// getHomePage(homePageButton);
 
 const menuButton = document.querySelector("#menu-btn");
 const aside = document.querySelector("aside");
 
-menuButton.addEventListener("click", function (e) {
+menuButton.addEventListener("click", function(e) {
     aside.classList.add("float-full");
 });
 
 const closeAsideButton = document.querySelector("#close-aside");
-closeAsideButton.addEventListener("click", function (e) {
+closeAsideButton.addEventListener("click", function(e) {
     aside.classList.remove("float-full");
 });
+

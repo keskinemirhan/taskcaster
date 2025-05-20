@@ -128,6 +128,7 @@ aside {
 }
 
 nav {
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
@@ -466,6 +467,7 @@ tr:hover {
 .table-container {
     min-width: 0;
     overflow-x: auto;
+    min-height: fit-content;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -489,7 +491,7 @@ tr:hover {
 .btn {
     width: fit-content;
     border: 1px solid var(--border-color);
-    padding: 0.3rem 1rem;
+    padding: 0.3rem 0.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -714,4 +716,38 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 0.625rem;
+}
+
+.project-task-list {
+    padding: 0.5rem;
+    flex: 1;
+
+}
+
+.project-task-list-title {
+    margin-bottom: 0.5rem;
+}
+.project-task-list-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-top: 0.5rem;
+}
+.project-tasks {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.project-task-header {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    text-align: center;
+}
+.project-title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }

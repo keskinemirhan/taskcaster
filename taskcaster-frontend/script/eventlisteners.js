@@ -1,3 +1,12 @@
+function bindProjectButtons(rootElement) {
+    const projectButtons = rootElement.querySelectorAll(".project-item.page-button");
+    projectButtons.forEach(projectButton => {
+        projectButton.addEventListener("click", function(e) {
+            getProjectPage(projectButton.getAttribute("id"), projectButton);
+        })
+    });
+}
+
 function bindTaskButtons(rootElement) {
     const assignedTasksButtons = rootElement.querySelectorAll(".assigned-task-item");
 
