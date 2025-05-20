@@ -6,6 +6,11 @@
 }
 
 :root {
+    --progress-color: #FFEC17;
+    --idle-color: #D9D9D9;
+    --warning-color: #FF2F2F;
+    --done-color: #00FF1E;
+
     --border-color: #E3E3E3;
     --left-width: 16rem;
     --left-indent: 1rem;
@@ -103,6 +108,8 @@ nav {
     border-right: 1px solid var(--border-color);
     border-left: 1px solid var(--border-color);
     padding-left: var(--left-indent);
+    padding-right: var(--left-indent);
+
     padding-top: 0.5rem;
     gap: 0.2rem;
 }
@@ -130,11 +137,11 @@ header {
 }
 
 .menu-item {
+    user-select: none;
     display: flex;
     flex-direction: row;
     justify-content: left;
     align-items: center;
-    margin-right: 0.5rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
     color: var(--text-inactive);
@@ -185,10 +192,12 @@ header {
     background-color: var(--bg-active);
 
 }
-.profile-button i , .workspace-button i {
+
+.profile-button i,
+.workspace-button i {
     font-size: 1.2rem;
 }
- 
+
 .header-title {
     max-width: 16rem;
     font-size: 0.8rem;
@@ -202,10 +211,165 @@ header {
 }
 
 .profile-image {
-    object-fit:cover;
+    object-fit: cover;
     object-position: center;
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 100%;
 
+}
+
+
+
+.menu-item-content-list {
+    user-select: none;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.25rem;
+    gap: 0.3125rem;
+}
+
+.project-item {
+    color: var(--text-inactive);
+    font-size: 0.875rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.project-item.active,
+.project-item:hover {
+    color: var(--text-active);
+    background-color: var(--bg-active);
+}
+
+.project-item:hover {
+    cursor: pointer;
+}
+
+.assigned-task-item {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3125rem;
+    padding: 0.1rem;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+.assigned-task-item .task-text {
+    color: var(--text-inactive);
+}
+
+.assigned-task-item:hover .task-text {
+    color: var(--text-active);
+}
+
+.assigned-task-item:hover {
+    cursor: pointer;
+}
+
+.assigned-task-item.active .task-text {
+    color: var(--text-active);
+}
+
+.assigned-task-item .icon {
+    font-size: 0.625rem;
+}
+
+.assigned-task-item .done {
+    color: var(--done-color);
+}
+
+.assigned-task-item .progress {
+    color: var(--progress-color);
+}
+
+.assigned-task-item .idle {
+    color: var(--idle-color);
+}
+
+.assigned-task-item .warning {
+    color: var(--warning-color);
+}
+
+.hidden {
+    display: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    left: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.show {
+    display: block;
+}
+
+.dropdown-content {
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 0.2rem;
+    padding: 0.4rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+@keyframes dropanimation {
+    from {
+        opacity: 0%;
+    }
+
+    to {
+        opacity: 100%;
+    }
+}
+
+.dropdown-content.show {
+    animation: dropanimation;
+    animation-duration: 0.3s;
+
+}
+
+.dropdown-content .drop-header {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.8rem;
+    overflow:hidden;
+    color: var(--text-inactive);
+    margin: 0.1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: bold;
+
+}
+
+.dropdown-item {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.8rem;
+    overflow:hidden;
+    color: var(--text-inactive);
+    border-radius: 5px;
+    margin: 0.1rem;
+    user-select: none;
+}
+.dropdown-item:hover {
+    background-color: var(--bg-active);
+    color: var(--text-active);
+    cursor: pointer;
+}
+
+.drop-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem;
+}
+.drop-header .profile-image {
+    width: 2rem;
+    height:2rem;
 }

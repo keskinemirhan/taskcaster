@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="/task-caster-t.svg">
+    
+    <link rel="stylesheet" type="text/css" href="/src/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <title>TaskCaster</title>
   </head>
@@ -14,21 +16,21 @@
           <img class="logo-img" src="/task-caster-text.svg" alt="Taskcaster">
         </div>
         <nav>
-          <div class="menu-item ">
+          <div id="projects-button" class="menu-item ">
             <i class="menu-icon bi bi-card-checklist"></i>
             <div class="menu-text">
               Projects
             </div>
           </div>
-          <div class="menu-item active">
+          <div id="projects-list" class="menu-item-content-list hidden">
+          </div>
+          <div id="assigned-tasks" class="menu-item ">
             <i class="menu-icon bi bi-person-fill-up"></i>
             <div class="menu-text">
               Assigned Tasks
             </div>
           </div>
-          <div class="menu-item-content-list">
-            <div>
-            </div>
+          <div id="assigned-tasks-list" class="menu-item-content-list hidden">
           </div>
           <div class="menu-item">
             <i class="menu-icon bi bi-people-fill"></i>
@@ -51,18 +53,55 @@
             </div>
           </div>
           <div class="header-buttons">
-            <button class="workspace-button">
-              <i class="bi bi-bezier"></i>
-              <div class="workspace-text">
-                My Workspace
+            <div class="dropdown">
+              <button class="workspace-button dropbtn">
+                <i class="bi bi-bezier"></i>
+                <div class="workspace-text">
+                  My Workspace
+                </div>
+              </button>
+              <div class="dropdown-content">
+                <div class="drop-header">
+                  Select Workspace
+                </div>
+                <div class="dropdown-item">
+                  <i class="bi bi-bezier"></i>
+                  Workspace 1
+                </div>
+                <div class="dropdown-item">
+                  <i class="bi bi-bezier"></i>
+                  Doe Group
+                </div>
+                <div class="dropdown-item">
+                  <i class="bi bi-plus"></i>
+                  Create Workspace
+                </div>
               </div>
-            </button>
-            <button class="profile-button">
-              <img class="profile-image" src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250">
-              <div class="profile-name">
-                John Doe
+            </div>
+            <div class="dropdown">
+              <button class="dropbtn profile-button">
+                <img class="profile-image" src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250">
+                <div class="profile-name">
+                  John Doe
+                </div>
+              </button>
+              <div class="dropdown-content">
+                <div class="drop-header">
+                  <img class="profile-image" src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250">
+                  <div class="profile-name">
+                    John Doe
+                  </div>
+                </div>
+                <div class="dropdown-item">
+                  <i class="bi bi-person-circle"></i>
+                  Profile
+                </div>
+                <div class="dropdown-item">
+                  <i class="bi bi-gear-fill"></i>
+                  Settings
+                </div>
               </div>
-            </button>
+            </div>
           </div>
         </header>
         <section>
