@@ -5,17 +5,9 @@ function changePage(itemId, itemType, titleElement, pageElement) {
     aside.classList.remove("float-full");
     headerTitle.innerHTML = "";
     headerTitle.appendChild(titleElement);
-    const pageButtons = document.querySelectorAll(`[data-comptype="page-button"]`);
-    pageButtons.forEach((pageButton) => {
-        const type = pageButton.getAttribute("data-type");
-        const id = pageButton.getAttribute("data-id");
-        if (itemId === id && itemType === type) {
-            pageButton.classList.add("active");
-        } else {
-            pageButton.classList.remove("active");
-        }
-    });
-
+    const pageButtons = document.querySelectorAll(".page-button");
+    const event = new CustomEvent("changepage", { detail: { itemId: itemId, itemType: itemType } });
+    pageButtons.forEach(button => button.dispatchEvent(event));
     section.innerHTML = "";
     section.appendChild(pageElement)
 }

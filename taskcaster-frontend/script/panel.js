@@ -1,7 +1,6 @@
-
 function createTaskItem(taskId, status, taskName) {
     const html = `
-            <div data-comptype="page-button" data-type="task" data-id="${taskId}" class="assigned-task-item page-button">
+            <div class="assigned-task-item page-button">
                 <div  class="icon ${status}">
                     <i class="bi bi-circle-fill"></i>
                 </div>
@@ -15,12 +14,19 @@ function createTaskItem(taskId, status, taskName) {
     element.addEventListener("click", function(e) {
         getTaskPage(taskId);
     });
+    element.addEventListener("changepage", function(e) {
+        if (e.detail.itemId === taskId && e.detail.itemType === "task") {
+            element.classList.add("active");
+        } else {
+            element.classList.remove("active");
+        }
+    });
     return element;
 }
 
 function createProjectItem(projectId, projectName) {
     const html = `
-            <div data-comptype="page-button" data-type="project" data-id="${projectId}" class="project-item page-button">
+            <div class="project-item page-button">
             ${projectName}
             </div>
         `;
@@ -29,6 +35,13 @@ function createProjectItem(projectId, projectName) {
     element.addEventListener("click", function(e) {
         getProjectPage(projectId);
     })
+    element.addEventListener("changepage", function(e) {
+        if (e.detail.itemId === projectId && e.detail.itemType === "project") {
+            element.classList.add("active");
+        } else {
+            element.classList.remove("active");
+        }
+    });
     return element;
 }
 

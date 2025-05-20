@@ -32,20 +32,20 @@ async function getProjectPage(id) {
               </button>
             </div>
             <div class="project-tasks">
-              <div class="project-task-list assigned-tasks">
-                <div class="project-task-list-title">
+              <div class="project-task-list ">
+                <div class="project-task-list-title ">
                   Assigned
                 </div>
                 <hr>
-                <div class="project-task-list-items">
+                <div class="project-task-list-items assigned-tasks">
                 </div>
               </div>
-              <div class="project-task-list active-tasks">
+              <div class="project-task-list ">
                 <div class="project-task-list-title">
                   Active
                 </div>
                 <hr>
-                <div class="project-task-list-items">
+                <div class="project-task-list-items active-tasks">
                 </div>
               </div>
               <div class="project-task-list">

@@ -214,7 +214,6 @@ header {
 .workspace-button {
     flex-wrap: nowrap;
     display: flex;
-    font-weight: 600;
     flex-direction: row;
     padding: 0.2rem 1rem;
     align-items: center;
