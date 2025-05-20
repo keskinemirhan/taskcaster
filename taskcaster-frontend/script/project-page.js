@@ -1,15 +1,18 @@
-async function getProjectPage(id, pageButton) {
+async function getProjectPage(id) {
     const project = await apiService.getProject(id);
     const tasks = await apiService.getProjectTasks(id);
     const assigned = tasks.filter((task) => task.assigned);
     const active = tasks.filter((task) => task.status !== "done");
     const done = tasks.filter((task) => task.status === "done");
-    const title  =`
+    const titleElement = createElement(`
+    <div class="header-title" >
             <i class="menu-icon bi bi-card-checklist"></i>
             ${project.name}
-    ` 
+            </div>
+    `);
 
-    const html = ` 
+    const pageElement = createElement(` 
+    <div class="main-screen">
             <div class="project-title">
               <h1>${project.name}</h1>
               <button class="btn">
@@ -29,46 +32,20 @@ async function getProjectPage(id, pageButton) {
               </button>
             </div>
             <div class="project-tasks">
-              <div class="project-task-list">
+              <div class="project-task-list assigned-tasks">
                 <div class="project-task-list-title">
                   Assigned
                 </div>
                 <hr>
-                <div class="project-task-list-items">`
-        + assigned.map((task) => `
-                  <div id="${task.id}" class="assigned-task-item page-button">
-                    <div class="icon ${task.status}">
-                      <i class="bi bi-circle-fill"></i>
-                    </div>
-                    <div class="task-text">
-                    ${task.name}
-                    </div>
-                  </div>
-`).join("") +
-
-
-
-
-
-        `
+                <div class="project-task-list-items">
                 </div>
               </div>
-              <div class="project-task-list">
+              <div class="project-task-list active-tasks">
                 <div class="project-task-list-title">
                   Active
                 </div>
                 <hr>
                 <div class="project-task-list-items">
-                ` + active.map((task) => `
-                  <div id="${task.id}" class="assigned-task-item page-button">
-                    <div class="icon ${task.status}">
-                      <i class="bi bi-circle-fill"></i>
-                    </div>
-                    <div class="task-text">
-                    ${task.name}
-                    </div>
-                  </div>
-`).join("") + `
                 </div>
               </div>
               <div class="project-task-list">
@@ -76,19 +53,7 @@ async function getProjectPage(id, pageButton) {
                   Done
                 </div>
                 <hr>
-                <div class="project-task-list-items">
-                `+
-
-        done.map((task) => `
-                  <div id="${task.id}" class="assigned-task-item page-button">
-                    <div class="icon ${task.status}">
-                      <i class="bi bi-circle-fill"></i>
-                    </div>
-                    <div class="task-text">
-                    ${task.name}
-                    </div>
-                  </div>
-`).join("") + `
+                <div class="project-task-list-items done-tasks">
                 </div>
               </div>
             </div>
@@ -205,8 +170,20 @@ async function getProjectPage(id, pageButton) {
                 </tr>
               </table>
             </div>
-          `;
+            </div>
+          `);
+    const assignedList = pageElement.querySelector(".assigned-tasks");
+    const activeList = pageElement.querySelector(".active-tasks");
+    const doneList = pageElement.querySelector(".done-tasks");
+    assigned.forEach(task => {
+        assignedList.appendChild(createTaskItem(task.id, task.status, task.name));
+    });
+    active.forEach(task => {
+        activeList.appendChild(createTaskItem(task.id, task.status, task.name));
+    });
+    done.forEach(task => {
+        doneList.appendChild(createTaskItem(task.id, task.status, task.name));
+    });
 
-    changePage(title, html, pageButton);
-    bindTaskButtons(getPageRoot());
+    changePage(id, "project", titleElement, pageElement);
 }

@@ -1,20 +1,45 @@
+
+function createTaskItem(taskId, status, taskName) {
+    const html = `
+            <div data-comptype="page-button" data-type="task" data-id="${taskId}" class="assigned-task-item page-button">
+                <div  class="icon ${status}">
+                    <i class="bi bi-circle-fill"></i>
+                </div>
+                <div class="task-text">
+                ${taskName}
+                </div>
+            </div>
+
+        `;
+    const element = createElement(html);
+    element.addEventListener("click", function(e) {
+        getTaskPage(taskId);
+    });
+    return element;
+}
+
+function createProjectItem(projectId, projectName) {
+    const html = `
+            <div data-comptype="page-button" data-type="project" data-id="${projectId}" class="project-item page-button">
+            ${projectName}
+            </div>
+        `;
+
+    const element = createElement(html);
+    element.addEventListener("click", function(e) {
+        getProjectPage(projectId);
+    })
+    return element;
+}
+
 async function loadAssignedTasks(apiService) {
     const assignedTasks = await apiService.getAssignedTasks();
 
     const assignedTasksList = document.querySelector('#assigned-tasks-list');
     assignedTasks.forEach(task => {
-        assignedTasksList.innerHTML += `
-            <div id="${task.id}" class="assigned-task-item page-button">
-                <div  class="icon ${task.status}">
-                    <i class="bi bi-circle-fill"></i>
-                </div>
-                <div class="task-text">
-                ${task.name}
-                </div>
-            </div>
-    `;
+        const taskItem = createTaskItem(task.id, task.status, task.name);
+        assignedTasksList.appendChild(taskItem);
     });
-    bindTaskButtons(document);
 }
 
 loadAssignedTasks(apiService);
@@ -24,13 +49,8 @@ async function loadProjects(apiService) {
 
     const projectsList = document.querySelector("#projects-list")
     projects.forEach(project => {
-        projectsList.innerHTML += `
-            <div id="${project.id}" class="project-item page-button">
-            ${project.name}
-            </div>
-        `;
+        projectsList.appendChild(createProjectItem(project.id, project.name));
     });
-    bindProjectButtons(document);
 }
 
 loadProjects(apiService);
@@ -55,9 +75,6 @@ assignedTasksButton.addEventListener("click", function(e) {
 
 })
 
-bindTaskButtons(document);
-
-
 const projectsButton = document.querySelector("#projects-button");
 const projectsList = document.querySelector("#projects-list")
 
@@ -72,11 +89,10 @@ projectsButton.addEventListener("click", function(e) {
 });
 
 homePageButton.addEventListener("click", function(e) {
-    getHomePage(homePageButton);
+    getHomePage();
 });
 
-let currentPageButton = homePageButton;
-// getHomePage(homePageButton);
+getHomePage();
 
 const menuButton = document.querySelector("#menu-btn");
 const aside = document.querySelector("aside");

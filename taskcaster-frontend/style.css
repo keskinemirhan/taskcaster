@@ -244,7 +244,6 @@ header {
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
-    overflow: hidden;
 }
 
 .profile-image {

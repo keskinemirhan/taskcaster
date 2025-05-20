@@ -1,8 +1,8 @@
-async function getTaskPage(id, pageButton) {
+async function getTaskPage(id) {
     const task = await apiService.getTask(id);
     const reports = await apiService.getReports(id);
     const project = await apiService.getProject(task.projectId);
-    const title = `
+    const titleElement = createElement(`
                 <div class="task-status">
                   <i class="${task.status} bi bi-circle-fill"></i>
                   <div class="task-status-text">
@@ -10,8 +10,9 @@ async function getTaskPage(id, pageButton) {
                   </div>
                 </div>
 
-        `;
-    const html = `
+        `);
+    const pageElement = createElement(`
+            <div class="main-screen" > 
             <div class="task-top">
               <div class="task-identifier">
                 <div class="task-header">
@@ -193,9 +194,9 @@ async function getTaskPage(id, pageButton) {
                 <p class="report-desc">
                 ${report.desc}
                 </p>
-              </div>`).join("");
-    + `</div>`;
-    changePage(title, html, pageButton);
+              </div>`).join("")
+    + `</div></div>`);
+    changePage(id, "task", titleElement, pageElement);
     bindFormPreventDefault(getPageRoot());
     bindDropdowns(getPageRoot());
     bindDropdownSelections(getPageRoot());

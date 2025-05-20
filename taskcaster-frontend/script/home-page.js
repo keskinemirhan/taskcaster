@@ -1,13 +1,15 @@
-async function getHomePage(pageButton) {
+async function getHomePage() {
     const projects = await apiService.getProjects();
-    title = `
+    const titleElement = createElement(`
+    <div class="header-title">
             <i class="bi bi-activity"></i>
             <div class="title-text"> 
             Home
             </div> 
-        `;
-    const html = `
-            
+    </div>
+        `);
+    const pageElement = createElement(`
+            <div class="main-screen">         
             <div class="h-projects-header">
                 <h1>Projects</h1>
                 <button class="btn">
@@ -17,12 +19,6 @@ async function getHomePage(pageButton) {
             </div>
             <hr>
             <div class="project-item-list">
-            ${projects.map(project => {
-        return '<div id="' + project.id + '" class="project-item page-button">' +
-            project.name +
-            '</div>';
-
-    }).join("")}
             </div>
             <h1>Activities</h1>
             <hr>
@@ -137,7 +133,11 @@ async function getHomePage(pageButton) {
                 </tr>
               </table>
             </div>
-    `;
-    changePage(title, html, pageButton);
-    bindProjectButtons(getPageRoot());
+            </div>
+    `);
+    const projectList = pageElement.querySelector(".project-item-list");
+    projects.forEach(project => {
+        projectList.appendChild(createProjectItem(project.id, project.name));
+    });
+    changePage("homepage", "homepage", titleElement, pageElement);
 }
