@@ -1,4 +1,4 @@
-export const dashboard = {
+const dashboard = {
     projects: [
         {
             id: "web_application_project",

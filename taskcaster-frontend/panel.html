@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/task-caster-t.svg">
-    
-    <link rel="stylesheet" type="text/css" href="/src/style.css">
+    <link rel="icon" type="image/svg+xml" href="./task-caster-t.svg">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <title>TaskCaster</title>
   </head>
@@ -13,9 +12,15 @@
     <div class="app">
       <aside>
         <div class="logo-box">
-          <img class="logo-img" src="/task-caster-text.svg" alt="Taskcaster">
+          <img class="logo-img" src="./task-caster-text.svg" alt="Taskcaster">
         </div>
         <nav>
+          <div id="home-button" class="menu-item page-button">
+            <i class="menu-icon bi bi-activity"></i>
+            <div class="menu-text">
+              Home
+            </div>
+          </div>
           <div id="projects-button" class="menu-item ">
             <i class="menu-icon bi bi-card-checklist"></i>
             <div class="menu-text">
@@ -32,7 +37,7 @@
           </div>
           <div id="assigned-tasks-list" class="menu-item-content-list hidden">
           </div>
-          <div class="menu-item">
+          <div class="menu-item page-button">
             <i class="menu-icon bi bi-people-fill"></i>
             <div class="menu-text">
               People
@@ -45,12 +50,6 @@
       <main>
         <header>
           <div class="header-title">
-            <div class="title-type">
-              Task:
-            </div>
-            <div class="title-text">
-              Unit Tests
-            </div>
           </div>
           <div class="header-buttons">
             <div class="dropdown">
@@ -105,9 +104,12 @@
           </div>
         </header>
         <section>
+          <div class="main-screen">
+          </div>
         </section>
       </main>
     </div>
-    <script type="module" src="/src/main.js"></script>
+    <script src="./database.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>

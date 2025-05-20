@@ -86,12 +86,30 @@ main {
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
+    min-width: 0;
 }
 
 section {
     flex: 1 1 0;
     border-bottom: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    min-width: 0;
+}
+
+.main-screen {
+    flex: 1;
+    flex-basis: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 2rem;
+    max-width: 1000px;
+    gap: 0.5rem;
+    min-width: 0;
+
 }
 
 aside {
@@ -340,7 +358,7 @@ header {
 .dropdown-content .drop-header {
     padding: 0.5rem 0.5rem;
     font-size: 0.8rem;
-    overflow:hidden;
+    overflow: hidden;
     color: var(--text-inactive);
     margin: 0.1rem;
     border-bottom: 1px solid var(--border-color);
@@ -351,12 +369,13 @@ header {
 .dropdown-item {
     padding: 0.5rem 0.5rem;
     font-size: 0.8rem;
-    overflow:hidden;
+    overflow: hidden;
     color: var(--text-inactive);
     border-radius: 5px;
     margin: 0.1rem;
     user-select: none;
 }
+
 .dropdown-item:hover {
     background-color: var(--bg-active);
     color: var(--text-active);
@@ -369,7 +388,110 @@ header {
     align-items: center;
     gap: 0.3rem;
 }
+
 .drop-header .profile-image {
     width: 2rem;
-    height:2rem;
+    height: 2rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.project-item-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+}
+
+table {
+    font-size: 0.7rem;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table .assigned-task-item {
+    font-size: 0.7rem;
+}
+
+table,
+td,
+th {
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+th {
+    font-size: 0.6rem;
+    color: var(--text-inactive);
+    padding: 0.2rem;
+    text-align: left;
+}
+
+td {
+    padding: 0.2rem;
+    vertical-align: middle;
+    text-align: left;
+}
+
+tr:hover {
+    cursor: pointer;
+    background-color: var(--bg-active);
+}
+
+.table-container {
+    min-width: 0;
+    overflow-x: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.table-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.h-projects-header {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.btn {
+    border: 1px solid var(--border-color);
+    padding: 0.3rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+.btn i {
+    font-size: 1.2rem;
+}
+
+.btn:hover {
+    background-color: var(--bg-active);
+}
+
+hr {
+    height: 1px;
+    color: var(--border-color);
+    background-color: var(--border-color);
+    font-size: 0;
+    border: 0;
+    width: 100%;
 }
