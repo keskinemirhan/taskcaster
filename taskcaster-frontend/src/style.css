@@ -30,9 +30,12 @@ button:hover {
     cursor: pointer;
 }
 
-body {
+.app {
     font-family: Inter;
     background-color: var(--bg-color);
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
 }
 
 *::-webkit-scrollbar {
@@ -60,11 +63,6 @@ body {
     /* creates padding around scroll thumb */
 }
 
-body {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-}
 
 .logo-box {
     display: flex;
@@ -178,6 +176,7 @@ header {
     border-radius: 8px;
     gap: 0.4rem;
     border: 1px solid var(--border-color);
+    height: 2rem;
 
 }
 
@@ -200,4 +199,13 @@ header {
     align-items: center;
     gap: 0.5rem;
     overflow: hidden;
+}
+
+.profile-image {
+    object-fit:cover;
+    object-position: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 100%;
+
 }
