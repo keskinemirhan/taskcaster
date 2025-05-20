@@ -159,12 +159,15 @@ async function getTaskPage(id, pageButton) {
             `  + task.reports.map((report) => `
               <div class="report">
                 <div class="report-top">
+                <div class="report-profile">
                   <div class="profile-indicator">
                     <img class="profile-image" src="${report.imageUrl}">
                     <div class="profile-name">
                     ${report.name}
                     ${report.surname}
                     </div>
+                  </div>
+                  <hr>
                   </div>
                   <div class="datetime">
                   ${report.datetime}
@@ -186,7 +189,7 @@ async function getTaskPage(id, pageButton) {
                   </div>
                 </div>
                 <h3 class="report-header">${report.title}</h3>
-                <p>
+                <p class="report-desc">
                 ${report.desc}
                 </p>
               </div>`).join("");

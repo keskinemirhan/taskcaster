@@ -560,8 +560,6 @@ hr {
 p {
     line-height: 125%;
     font-size: 0.875rem;
-
-
 }
 
 
@@ -603,20 +601,18 @@ h2 {
 }
 
 .report {
-    background-color: var(--bg-post);
+    border: 1px solid var(--border-color);
     padding: 0.625rem 1.25rem;
     border-radius: 15px;
 }
 
 .report-top {
-    flex-wrap: wrap;
+    flex-direction: column;
     display: flex;
-    column-gap: 2rem;
-    row-gap: 0.4rem;
-    align-items: center;
+    align-items: left;
+    gap: 1rem;
     margin-bottom: 0.8rem;
 }
-
 .profile-indicator {
     display: flex;
     gap: 0.5rem;
@@ -624,7 +620,7 @@ h2 {
 }
 
 .profile-indicator .profile-name {
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .profile-indicator .profile-image {
@@ -649,12 +645,16 @@ h2 {
 }
 
 h3 {
-    font-size: 1.0rem;
+    font-size: 0.8rem;
     font-weight: 500;
 }
 
 .report-header {
     margin-bottom: 0.2rem;
+}
+.report-desc {
+    font-size: 0.8rem;
+    font-weight: 300;
 }
 
 .report-list {
@@ -702,4 +702,16 @@ h3 {
     width: 100vw;
     height: 100vh;
     z-index: 100;
+}
+
+.item-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.report-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
 }
