@@ -1,3 +1,4 @@
+// Creates project page element.
 async function getProjectPage(id) {
     const project = await apiService.getProject(id);
     const tasks = await apiService.getProjectTasks(id);

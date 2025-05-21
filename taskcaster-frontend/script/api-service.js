@@ -1,3 +1,8 @@
+// This file includes a mock database and an API service class definition.
+// These are temporary. Once the backend is concrete enough,
+// real implementations will replace them.
+
+
 const dashboard = {
     projects: [
         {

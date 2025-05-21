@@ -1,3 +1,4 @@
+// Creates home page element.
 async function getHomePage() {
     const projects = await apiService.getProjects();
     const titleElement = createElement(`

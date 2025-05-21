@@ -1,15 +1,4 @@
-
-function bindTaskButtons(rootElement) {
-    const assignedTasksButtons = rootElement.querySelectorAll(".assigned-task-item");
-
-    assignedTasksButtons.forEach((taskButton) => {
-        taskButton.addEventListener("click", function(e) {
-            getTaskPage(taskButton.getAttribute("id"), taskButton);
-        });
-    })
-}
-
-
+// For preventing the default behaviour with buttons in forms.
 function bindFormPreventDefault(rootElement) {
     const itemFormButtons = rootElement.querySelectorAll("form.item-form button");
 
@@ -20,7 +9,7 @@ function bindFormPreventDefault(rootElement) {
     });
 }
 
-
+// For selection fields with dropdown contents.
 function bindDropdownSelections(rootElement) {
     const dropdownSelections = rootElement.querySelectorAll("form.item-form .dropdown.selection");
     dropdownSelections.forEach((dropdown) => {
@@ -43,6 +32,7 @@ function bindDropdownSelections(rootElement) {
 
 
 
+// Hide the dropdown content when clicked outside of it.
 window.onclick = function(event) {
     if (!event.target.matches(".dropdown *")) {
         const dropdowns = document.querySelectorAll(".dropdown-content");
@@ -56,6 +46,7 @@ window.onclick = function(event) {
     }
 }
 
+// For dropdown buttons.
 function bindDropdowns(rootElement) {
     const dropdowns = rootElement.querySelectorAll(".dropdown");
     dropdowns.forEach((dropdown) => {

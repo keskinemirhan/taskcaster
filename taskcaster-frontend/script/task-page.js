@@ -1,3 +1,4 @@
+// Creates task page element.
 async function getTaskPage(id) {
     const task = await apiService.getTask(id);
     const reports = await apiService.getReports(id);
