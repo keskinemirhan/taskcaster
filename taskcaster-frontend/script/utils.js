@@ -11,6 +11,13 @@ function changePage(itemId, itemType, titleElement, pageElement) {
     section.innerHTML = "";
     section.appendChild(pageElement)
 }
+
 function getPageRoot() {
     return document.querySelector("section");
+}
+
+function createElement(htmlString) {
+    const node = document.createElement("div");
+    node.innerHTML = htmlString;
+    return node.firstElementChild;
 }
