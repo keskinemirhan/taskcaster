@@ -15,7 +15,7 @@ function createTaskItem(taskId, status, taskName) {
     element.addEventListener("click", function(e) {
         getTaskPage(taskId);
     });
-    
+
     // The 'changepage' event is dispatched from the changePage function to indicate a page change.
     // Since a task item button is also a page button, it should have the 'active' class only when the current page matches its target page.
     element.addEventListener("changepage", function(e) {
@@ -170,14 +170,15 @@ async function createProjectsButton() {
     nav.appendChild(homePageButton);
     nav.appendChild(projectsButton);
     nav.appendChild(assignedTasks);
-})();
+})().then(() => {
+    // Load home page after panel creation.
+    getHomePage();
+});
 
 // TODO: Create components for dropdowns. 
 bindDropdowns(document);
 bindDropdownSelections(document);
 
-// Load home page first.
-getHomePage();
 
 // The following lines are for menu button function.
 const menuButton = document.querySelector("#menu-btn");
