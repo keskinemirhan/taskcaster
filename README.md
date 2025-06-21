@@ -15,7 +15,7 @@ Taskcaster is an app with a clear goal: enabling collaboration through project a
 ## Getting Started
 
 1. Clone the repository
-2. Open index.html in your browser to view the current frontend demo
+2. Open panel.html in your browser to view the current frontend demo
 
 ## Roadmap
 
