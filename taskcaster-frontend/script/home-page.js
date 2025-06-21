@@ -1,7 +1,7 @@
 // Creates home page element.
 async function getHomePage() {
-    const projects = await apiService.getProjects();
-    const titleElement = createElement(`
+  const projects = await apiService.getProjects();
+  const titleElement = createElement(`
     <div class="header-title">
             <i class="bi bi-activity"></i>
             <div class="title-text"> 
@@ -9,11 +9,11 @@ async function getHomePage() {
             </div> 
     </div>
         `);
-    const pageElement = createElement(`
+  const pageElement = createElement(`
             <div class="main-screen">         
             <div class="h-projects-header">
                 <h1>Projects</h1>
-                <button class="btn">
+                <button class="btn add-project-btn">
                 <i class="bi bi-plus"></i>
                     Add Project
                 </button>
@@ -136,9 +136,16 @@ async function getHomePage() {
             </div>
             </div>
     `);
-    const projectList = pageElement.querySelector(".project-item-list");
-    projects.forEach(project => {
-        projectList.appendChild(createProjectItem(project.id, project.name));
+  const projectList = pageElement.querySelector(".project-item-list");
+  const addProjectBtns = pageElement.querySelectorAll(".add-project-btn");
+  addProjectBtns.forEach((addProjectBtn) => {
+    addProjectBtn.addEventListener("click", () => {
+      getProjectForm();
     });
-    changePage("homepage", "homepage", titleElement, pageElement);
+  });
+  projects.forEach((project) => {
+    projectList.appendChild(createProjectItem(project.id, project.name));
+  });
+  if (projects.length === 0) projectList.innerText = "No Projects...";
+  changePage("homepage", "homepage", titleElement, pageElement);
 }

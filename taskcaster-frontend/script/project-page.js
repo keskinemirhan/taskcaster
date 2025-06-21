@@ -1,22 +1,22 @@
 // Creates project page element.
 async function getProjectPage(id) {
-    const project = await apiService.getProject(id);
-    const tasks = await apiService.getProjectTasks(id);
-    const assigned = tasks.filter((task) => task.assigned);
-    const active = tasks.filter((task) => task.status !== "done");
-    const done = tasks.filter((task) => task.status === "done");
-    const titleElement = createElement(`
+  const project = await apiService.getProject(id);
+  const tasks = await apiService.getProjectTasks(id);
+  const assigned = tasks.filter((task) => task.assignee === "1");
+  const active = tasks.filter((task) => task.status !== "done");
+  const done = tasks.filter((task) => task.status === "done");
+  const titleElement = createElement(`
     <div class="header-title" >
             <i class="menu-icon bi bi-card-checklist"></i>
             ${project.name}
             </div>
     `);
 
-    const pageElement = createElement(` 
+  const pageElement = createElement(` 
     <div class="main-screen">
             <div class="project-title">
               <h1>${project.name}</h1>
-              <button class="btn">
+              <button class="btn edit-project-btn">
                 <i class="bi bi-pencil-square"></i>
                 Edit
               </button>
@@ -27,7 +27,7 @@ async function getProjectPage(id) {
             <hr>
             <div class="project-task-header">
               <h2>Tasks</h2>
-              <button class="btn">
+              <button class="btn add-task-btn">
                 <i class="bi bi-plus"></i>
                 Add Task
               </button>
@@ -173,18 +173,30 @@ async function getProjectPage(id) {
             </div>
             </div>
           `);
-    const assignedList = pageElement.querySelector(".assigned-tasks");
-    const activeList = pageElement.querySelector(".active-tasks");
-    const doneList = pageElement.querySelector(".done-tasks");
-    assigned.forEach(task => {
-        assignedList.appendChild(createTaskItem(task.id, task.status, task.name));
-    });
-    active.forEach(task => {
-        activeList.appendChild(createTaskItem(task.id, task.status, task.name));
-    });
-    done.forEach(task => {
-        doneList.appendChild(createTaskItem(task.id, task.status, task.name));
-    });
+  const assignedList = pageElement.querySelector(".assigned-tasks");
+  const activeList = pageElement.querySelector(".active-tasks");
+  const doneList = pageElement.querySelector(".done-tasks");
+  const editProjectBtn = pageElement.querySelector(".edit-project-btn");
+  const addTaskBtn = pageElement.querySelector(".add-task-btn");
+  editProjectBtn.addEventListener("click", (e) => {
+    getProjectForm(id);
+  });
+  assigned.forEach((task) => {
+    assignedList.appendChild(createTaskItem(task.id, task.status, task.name));
+  });
+  if (assigned.length === 0) assignedList.innerText = "No Tasks...";
+  active.forEach((task) => {
+    activeList.appendChild(createTaskItem(task.id, task.status, task.name));
+  });
+  if (active.length === 0) activeList.innerText = "No Tasks...";
 
-    changePage(id, "project", titleElement, pageElement);
+  done.forEach((task) => {
+    doneList.appendChild(createTaskItem(task.id, task.status, task.name));
+  });
+  if (done.length === 0) doneList.innerText = "No Tasks...";
+  addTaskBtn.addEventListener("click", (e) => {
+    getTaskForm(id);
+  });
+
+  changePage(id, "project", titleElement, pageElement);
 }
